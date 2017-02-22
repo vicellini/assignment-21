@@ -3,13 +3,147 @@
 }
 
 body{
-	background: limegreen;
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 }
 
-$txt-color: maroon;
-
-h2{
-	color: $txt-color;
-	border-bottom: 4px solid $txt-color;
+.u_column-container {
+	font-size: 0;
 }
 
+.header {
+	height: 80px;
+	position: relative;
+	top: 0; left: 0;
+	font-family: "Palatino"
+}
+
+.logo {
+	display: inline-block;
+	vertical-align: top;
+	font-size: medium;
+	width: 50%;
+	text-align: left;
+	font-size: 35px;
+	color: #F56400;
+}
+
+.logo:hover {
+	cursor: pointer;
+}
+
+.header .header_cart {
+	display: inline-block;
+	vertical-align: top;
+	font-size: medium;
+	width: 49%;
+	line-height: 80px;
+	font-size: 30px;
+	text-align: right;
+}
+
+.navbar {
+	border-top: 1px solid #EEEEEE;
+	border-bottom: 1px solid #EEEEEE;
+	height: 20px;
+}
+
+.navbar-column {
+	display: inline-block;
+	vertical-align: top;
+	font-size: medium;
+	text-align: center;
+	font-size: 12px;
+	font-weight: 400;
+  color: #95A5A6;
+	height: 100%;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 15px;
+}
+
+.navbar-column:hover {
+	cursor: pointer;
+	background: #DCDCDC;
+	text-decoration: none;
+}
+
+.col-md-4:nth-child(3n+1) {
+	clear: left;
+}
+
+.col-xs-6:nth-child(2n+1) {
+	clear: left;
+}
+
+.thumbnail {
+	box-shadow: 0 1px 2px 0 rgba(191,191,191,0.5);
+	padding: 0;
+}
+
+.thumbnail:hover {
+	cursor: pointer;
+  box-shadow: 0 0 1px 2px rgba(191,191,191,0.7);
+}
+
+.caption h3 {
+	font-size: 14px;
+}
+
+.thumbnail img {
+	object-fit: cover;
+	width: 100%;
+	height: 200px;
+}
+
+.shop-name {
+	text-align: left;
+	color: #95A5A6;
+	font-size: 12px;
+}
+
+.item-price {
+	text-align: right;
+	font-size: 12px;
+}
+
+
+.main-image {
+	width: 100%;
+}
+
+
+.image-cycle {
+	text-align: center;
+	margin-top: 10px;
+	img{
+		padding: 0 8px;
+	}
+}
+
+.item-information{
+	width: 40%;
+	padding-right: 35px;
+  h2 {
+		font-size: 24px;
+		font-family: "Palatino";
+	}
+	.item-description {
+		font-size: 16px;
+		line-height: 1.5;
+		letter-spacing: 0.5px;
+	}
+}
+
+.item-information__price {
+	line-height: 38px;
+	margin-bottom: 15px;
+}
+
+.item-information button {
+	font-size: 12px;
+	background: #fff;
+	padding: 6px 18px;
+	border: #000 solid 1px;
+	border-radius: 2px;
+	outline: none;
+}
