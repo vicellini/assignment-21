@@ -5,7 +5,29 @@ export const MultiListingView = Backbone.View.extend({
 
   events: {
     'click .item-thumbnail' : 'handleIndividualItem',
-    'submit #form-search' : 'handleSearchData'
+    'submit #form-search' : 'handleSearchData',
+    'click .filter-checkbox' : 'handleFilters',
+  },
+
+
+
+  handleIndividualItem: function(evt){
+    let clickedItemEl = evt.currentTarget
+    window.location.hash = `details/${clickedItemEl.dataset.itemid}`
+  },
+
+  handleSearchData: function(evt){
+    evt.preventDefault();
+    let searchData = evt.target
+    let hasSearchData = this._keywordSearchData(searchData.keyword.value)
+    window.location.hash = `search/${hasSearchData}`
+  },
+
+  handleFilters: function(evt){
+    let filterElName = evt.target.name
+    if(filterElName === 'posted-last-week'){
+
+    }
   },
 
   _keywordSearchData: function(someString){
@@ -19,18 +41,6 @@ export const MultiListingView = Backbone.View.extend({
         }
     }
     return finalString
-  },
-
-  handleIndividualItem: function(evt){
-    let clickedItemEl = evt.currentTarget
-    window.location.hash = `details/${clickedItemEl.dataset.itemid}`
-  },
-
-  handleSearchData: function(evt){
-    evt.preventDefault();
-    let searchData = evt.target
-    let hasSearchData = this._keywordSearchData(searchData.keyword.value)
-    window.location.hash = `search/${hasSearchData}`
   },
 
   _singleItemTemplate: function(listingModel){
@@ -55,13 +65,21 @@ export const MultiListingView = Backbone.View.extend({
     return `
     </hr>
     <div class="row">
-      <form class="col-xs-2" id="form-search">
+      <form class="col-xs-12 col-md-3" id="form-search">
         <div class="searchbar field_keyword">
           <h3>Search</h3>
           <input type="text" name="keyword"/>
         </div>
+        <div class="options-check">
+          <h3>Options</h3>
+          <ul class="filter-checkbox">
+            <li><label><input type="checkbox" name="posted-last-week"> Posted In Last Week</input></label></li>
+            <li><label><input type="checkbox" name="under25"> Less Than $25</input></label></li>
+            <li><label><input type="checkbox" name="threeImg"> Has 3 Pictures</input></label></li>
+          </ul>
+        </div>
       </form>
-      <div class="col-xs-10 active-list-items">
+      <div class="col-xs-12 col-md-9 active-list-items">
         <div class="row">
           ${listOfEtsyModels.map(this._singleItemTemplate).join('')}
         </div>
@@ -117,3 +135,24 @@ export const SingleItemView = Backbone.View.extend({
       },
 
   })
+
+
+export const NavBarView = Backbone.View.extend({
+    el: '.super-header',
+
+    events: {
+  		'click .header' : 'handleReturnToHome',
+  		'click .navbar' : 'handleCatagoryChage'
+  	},
+
+    handleReturnToHome: function(){
+      window.location.hash = ''
+    },
+
+    handleCatagoryChage: function(evt){
+      window.location.hash = `catagories/${evt.target.dataset.cat}`
+    },
+
+
+    render: function(){}
+})

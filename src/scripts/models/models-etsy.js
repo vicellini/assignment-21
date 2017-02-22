@@ -36,7 +36,7 @@ export const EtsySearchResultsCollection = Backbone.Collection.extend({
 export const EtsyCatagoryCollection = Backbone.Collection.extend({
 	model: EtsyModel,
 	initialize: function(catId){
-		this.url = `https://openapi.etsy.com/v2/listings/active.js?api_key=59fgij0pa379rvshx92jwzfl&catagory/${catId}&includes=Images,Shop&callback=?`;
+		this.url = `https://openapi.etsy.com/v2/listings/active.js?api_key=59fgij0pa379rvshx92jwzfl&category=${catId}&includes=Images,Shop&callback=?`;
 	},
 	parse: function(rawJsonRes){
 		return rawJsonRes.data

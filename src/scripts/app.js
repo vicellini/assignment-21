@@ -1,14 +1,15 @@
 import Backbone from 'backbone'
 import $ from 'jquery'
 import {EtsyModel, EtsyListingCollection, EtsySearchResultsCollection, EtsyCatagoryCollection} from './models/models-etsy.js'
-import {MultiListingView, SingleItemView} from './views.js'
+import {MultiListingView, SingleItemView, NavBarView} from './views.js'
 
 const AppRouter = Backbone.Router.extend({
+	el: '#appContainer',
+
 	initialize: function(){
+		let navView = new NavBarView()
 		Backbone.history.start()
 	},
-
-	el: '#app-contaner',
 
 	routes: {
 		'catagories/:catagoryId' : 'showCatagoryPage',
@@ -16,19 +17,6 @@ const AppRouter = Backbone.Router.extend({
 		'details/:id' : 'showItemPage',
     '' : 'showHomePage',
   },
-
-	events: {
-		'click .header' : 'handleReturnToHome',
-		'click .navbar' : 'handleCatagoryChage'
-	},
-
-	handleReturnToHome: function(evt){
-		window.location.hash = ''
-	},
-
-	handleCatagoryChage: function(evt){
-		console.log(evt.currentTarget)
-	},
 
 
   showHomePage: function(){
@@ -61,10 +49,11 @@ const AppRouter = Backbone.Router.extend({
 
 	},
 
-	showCatagoryPage: function(catagory){
-		let etsyDataInstance = new EtsyCatagoryCollection(catagoryId)
+	showCatagoryPage: function(catId){
+		let etsyDataInstance = new EtsyCatagoryCollection(catId)
 		etsyDataInstance.fetch().then(function(serverRes){
 			let etsyInformation = serverRes.results
+			console.log(etsyInformation)
 			let viewInstance = new MultiListingView()
 			viewInstance.render(etsyInformation)
 			})

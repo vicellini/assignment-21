@@ -58,6 +58,29 @@ body {
   background: #DCDCDC;
   text-decoration: none; }
 
+.options-check {
+  font-size: 14px;
+  font-weight: 400; }
+  .options-check ul {
+    padding-left: 0; }
+  .options-check li {
+    list-style: none; }
+    .options-check li label {
+      display: block; }
+    .options-check li input[type="checkbox"] {
+      -webkit-appearance: none;
+      outline: none;
+      position: relative;
+      top: -1px;
+      vertical-align: bottom;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #000;
+      background: #fff; }
+    .options-check li input[type="checkbox"]:checked {
+      background: #5C97BF;
+      color: #fff; }
+
 .col-md-4:nth-child(3n+1) {
   clear: left; }
 
