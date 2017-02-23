@@ -1,7 +1,8 @@
 import Backbone from 'backbone'
 import $ from 'jquery'
-import {EtsyModel, EtsyListingCollection, EtsySearchResultsCollection, EtsyCatagoryCollection} from './models/models-etsy.js'
+import {EtsyModel, EtsyListingCollection, EtsySearchResultsCollection, EtsyCatagoryCollection, EtsyMaxPriceCollection} from './models/models-etsy.js'
 import {MultiListingView, SingleItemView, NavBarView} from './views.js'
+
 
 const AppRouter = Backbone.Router.extend({
 	el: '#appContainer',
@@ -60,6 +61,5 @@ const AppRouter = Backbone.Router.extend({
 	},
 
 })
-
 
 let myApplication = new AppRouter();

@@ -6,7 +6,7 @@ export const MultiListingView = Backbone.View.extend({
   events: {
     'click .item-thumbnail' : 'handleIndividualItem',
     'submit #form-search' : 'handleSearchData',
-    'click .filter-checkbox' : 'handleFilters',
+    'click .filter-checkbox' : 'handleFilter'
   },
 
 
@@ -21,13 +21,6 @@ export const MultiListingView = Backbone.View.extend({
     let searchData = evt.target
     let hasSearchData = this._keywordSearchData(searchData.keyword.value)
     window.location.hash = `search/${hasSearchData}`
-  },
-
-  handleFilters: function(evt){
-    let filterElName = evt.target.name
-    if(filterElName === 'posted-last-week'){
-
-    }
   },
 
   _keywordSearchData: function(someString){
@@ -88,11 +81,43 @@ export const MultiListingView = Backbone.View.extend({
     `
   },
 
-
-
   render: function(listOfEtsyModels){
       this.el.innerHTML = this._buildHTMLTemplate(listOfEtsyModels)
     },
+
+  handleFilter: function(evt){
+    let filterElName = evt.target.name
+    let finalData = []
+      if(filterElName === 'under25'){
+        let priceUnder25 = this.el.filter(function(itemObj){
+          if(itemObj.price < 25){
+            return true
+          }
+          finalData.push(priceUnder25)
+        })
+      }
+      if(filterElName === 'posted-last-week'){
+        let postWithinWeek = listOfEtsyModels.filter(function(itemObj){
+          let currentTime = Math.round(new Date().getTime()/1000.0)
+          let createTime = itemObj.creation_tsz;
+          let timeDif = currentTime - createTime;
+          if(timeDif < 604800000){
+            return true
+          }
+        })
+        finalData.push(postWithinWeek)
+      }
+      if(filterElName === 'threeImg'){
+        let threeImgArr = listOfEtsyModels.filter(function(itemObj){
+          if(itemObj.Images.length === 3){
+            return true
+          }
+        })
+        finalData.push(threeImgArr)
+      }
+    console.log(finalData)
+  },
+
 })
 
 export const SingleItemView = Backbone.View.extend({
@@ -135,7 +160,6 @@ export const SingleItemView = Backbone.View.extend({
       },
 
   })
-
 
 export const NavBarView = Backbone.View.extend({
     el: '.super-header',

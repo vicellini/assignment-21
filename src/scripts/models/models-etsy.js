@@ -1,5 +1,6 @@
 import Backbone from 'backbone'
 
+
 export const EtsyModel = Backbone.Model.extend({
 	initialize: function(itemListingId){
 		this.url = `https://openapi.etsy.com/v2/listings/${itemListingId}.js?api_key=59fgij0pa379rvshx92jwzfl&callback=?&includes=Images`
@@ -37,6 +38,17 @@ export const EtsyCatagoryCollection = Backbone.Collection.extend({
 	model: EtsyModel,
 	initialize: function(catId){
 		this.url = `https://openapi.etsy.com/v2/listings/active.js?api_key=59fgij0pa379rvshx92jwzfl&category=${catId}&includes=Images,Shop&callback=?`;
+	},
+	parse: function(rawJsonRes){
+		return rawJsonRes.data
+	},
+
+})
+
+export const EtsyMaxPriceCollection = Backbone.Collection.extend({
+	model: EtsyModel,
+	initialize: function(catId){
+		this.url = `https://openapi.etsy.com/v2/listings/active.js?api_key=59fgij0pa379rvshx92jwzfl&max_price=25&includes=Images,Shop&callback=?`;
 	},
 	parse: function(rawJsonRes){
 		return rawJsonRes.data
